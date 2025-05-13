@@ -9,7 +9,8 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -22,7 +23,6 @@ function SignUp() {
   const inputs = getInputs(register);
 
   const onSubmit = async (data) => {
-
     const payload = {
       username: data.userName.toLowerCase(),
       password: data.password,
@@ -33,7 +33,9 @@ function SignUp() {
       const result = await signUp(payload);
 
       toast.success("ثبت‌نام با موفقیت انجام شد!");
-      navigate("/login")
+
+
+      navigate("/login");
     } catch (error) {
       const status = error.response?.status;
       console.log("خطای کامل:", error.response);

@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
 function Dashboard() {
+  const username = localStorage.getItem("username");
   return (
-    <div>Dashboard</div>
-  )
+    <div>
+      <h2>👋 {username} سلام </h2>
+      <p>به داشبورد خوش آمدید!</p>
+    </div>
+  );
 }
 
-export default Dashboard
+export default Dashboard;
