@@ -6,8 +6,10 @@ import icon from "../assets/Union.png";
 import styles from "./signUp.module.css";
 import { signUp } from "../services/authService";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -20,13 +22,18 @@ function SignUp() {
   const inputs = getInputs(register);
 
   const onSubmit = async (data) => {
-    const { userName, password } = data;
-    console.log("ارسال به API:", { userName, password });
+
+    const payload = {
+      username: data.userName.toLowerCase(),
+      password: data.password,
+    };
+    console.log(payload);
 
     try {
-      const result = await signUp({ userName, password });
+      const result = await signUp(payload);
 
       toast.success("ثبت‌نام با موفقیت انجام شد!");
+      navigate("/login")
     } catch (error) {
       const status = error.response?.status;
       console.log("خطای کامل:", error.response);
