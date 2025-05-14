@@ -71,7 +71,7 @@ function SignUp() {
           </div>
         ))}
 
-        <button>ثبت نام</button>
+        <button className={styles.button}>ثبت نام</button>
         <span>حساب کاربری دارید؟</span>
       </div>
     </form>

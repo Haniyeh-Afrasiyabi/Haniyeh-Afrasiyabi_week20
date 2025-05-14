@@ -1,0 +1,69 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border: 1px solid #e4e4e4;
+  border-radius: 16px;
+  margin-top: 2rem;
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-right: 1px solid #e4e4e4;
+  padding: 0 1rem;
+}
+
+.profileAvatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid #e4e4e480;
+  object-fit: cover;
+}
+
+.profileText {
+  display: flex;
+  flex-direction: column;
+}
+
+.profileName {
+  font-size: 16px;
+  font-weight: 400;
+  color: #282828;
+  font-weight: bold;
+  margin: 0;
+}
+
+.profileRole {
+  font-size: 14px;
+  font-weight: 300;
+  color: #282828;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.searchBox input {
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.searchBox img {
+  background: none;
+  border: none;
+  padding: 0 0.5rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+}

@@ -1,0 +1,16 @@
+.tr_productItem {
+  border: 1px solid #f2f2f2;
+
+}
+
+.tr_productItem td {
+  padding: 1rem;
+}
+
+.button{
+    border: none;
+    background-color: #ffffff;
+    cursor: pointer;
+    gap: 1rem;
+    margin: 0.3rem;
+}
