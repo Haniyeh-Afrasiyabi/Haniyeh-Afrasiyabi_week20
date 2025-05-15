@@ -4,12 +4,14 @@ import { getAllProducts } from "../services/authService";
 import HeaderDashboard from "./HeaderDashboard";
 import MainDashboard from "./Maindashboard";
 import ModalDeleteSingle from "./ModalDeleteSingle";
+import ModalAddProduct from "./ModalAddProduct";
 
 export const ProductsContext = createContext();
 
 const initialState = {
   products: [],
   modalDeleteSingle: { show: false, id: null },
+  modalAddProduct: { show: false },
 };
 
 const reducer = (state, action) => {
@@ -29,10 +31,22 @@ const reducer = (state, action) => {
     case "DeleteProduct":
       return {
         ...state,
-        products: state.products.filter((product) => 
-          product.id !== action.payload
+        products: state.products.filter(
+          (product) => product.id !== action.payload
         ),
       };
+    case "ShowAddProductModal":
+      return {
+        ...state,
+        modalAddProduct: { show: true },
+      };
+    case "CloseAddProductModal":
+      return {
+        ...state,
+        modalAddProduct: { show: false },
+      };
+    case "AddProduct":
+      return { ...state, products: [action.payload, ...state.products] };
   }
 };
 
@@ -54,9 +68,13 @@ function Dashboard() {
 
   return (
     <ProductsContext.Provider value={{ state, dispatch }}>
-      <HeaderDashboard />
-      <MainDashboard />
-      <ModalDeleteSingle />
+      <div className={styles.container}>
+      
+        <HeaderDashboard />
+        <MainDashboard />
+        <ModalAddProduct />
+        <ModalDeleteSingle />
+      </div>
     </ProductsContext.Provider>
   );
 }

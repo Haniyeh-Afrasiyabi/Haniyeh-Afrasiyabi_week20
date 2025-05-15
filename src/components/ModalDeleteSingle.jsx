@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 function ModalDeleteSingle() {
   const { state, dispatch } = useContext(ProductsContext);
-  if (!state.modalDeleteSingle.show) return null;
+  if (!state.modalDeleteSingle?.show) return null;
 
   const deleteHandler = async () => {
     const id = state.modalDeleteSingle.id;

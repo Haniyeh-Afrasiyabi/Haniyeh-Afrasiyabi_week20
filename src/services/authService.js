@@ -28,3 +28,15 @@ export const deleteProduct = async (id) => {
 
   return response.data;
 };
+
+export const addProduct = async (data) => {
+  const token = localStorage.getItem("token"); // گرفتن توکن
+
+  const response = await axios.post(`${API_BASE_URL}/products`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
