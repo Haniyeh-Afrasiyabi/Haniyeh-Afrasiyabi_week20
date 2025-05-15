@@ -5,7 +5,7 @@ import styles from "../components/tableProductsList.module.css";
 import TableProductItem from "./TableProductItem";
 
 function TableProductsList() {
-  const { products } = useContext(ProductsContext);
+  const { state } = useContext(ProductsContext);
   return (
     <>
       <table className={styles.table}>
@@ -19,7 +19,7 @@ function TableProductsList() {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {state.products.map((product) => (
             // console.log(product)
             <TableProductItem key={product.id} product={product} />
           ))}
