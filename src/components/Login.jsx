@@ -3,10 +3,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../schema/login";
 import getInputs from "../constants/input";
 import icon from "../assets/Union.png";
-import styles from "./signUp.module.css";
-import { login } from "../services/authService";
+import styles from "./signUp&Login.module.css";
+import { login } from "../services/config";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
@@ -51,7 +51,6 @@ function Login() {
   };
 
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>بوت کمپ بوتواستارت</h1>
       <div className={styles.container}>
@@ -71,8 +70,10 @@ function Login() {
           </div>
         ))}
 
-        <button> ورود</button>
-        <span>ایجاد حساب کاربری!</span>
+        <button className={styles.button}> ورود</button>
+        <span>
+          <NavLink to="/">ایجاد حساب کاربری! </NavLink>
+        </span>
       </div>
     </form>
   );

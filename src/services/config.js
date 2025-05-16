@@ -13,7 +13,12 @@ export const login = async (data) => {
 };
 
 export const getAllProducts = async () => {
-  const response = await axios.get(`${API_BASE_URL}/products`);
+  const token = localStorage.getItem("token");
+  const response = await axios.get(`${API_BASE_URL}/products`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
 
@@ -30,7 +35,7 @@ export const deleteProduct = async (id) => {
 };
 
 export const addProduct = async (data) => {
-  const token = localStorage.getItem("token"); 
+  const token = localStorage.getItem("token");
 
   const response = await axios.post(`${API_BASE_URL}/products`, data, {
     headers: {
@@ -41,8 +46,8 @@ export const addProduct = async (data) => {
   return response.data;
 };
 
-export const editProduct = async (id,data) => {
-  const token = localStorage.getItem("token"); 
+export const editProduct = async (id, data) => {
+  const token = localStorage.getItem("token");
 
   const response = await axios.put(`${API_BASE_URL}/products/${id}`, data, {
     headers: {

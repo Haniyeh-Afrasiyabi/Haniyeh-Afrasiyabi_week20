@@ -9,7 +9,6 @@ function HeaderDashboard() {
     <header className={styles.header}>
       <div className={styles.searchBox}>
         <img src={searchIcon} alt="" />
-        {/* <input type="text" placeholder="جستجو کالا" /> */}
         <SearchBar />
       </div>
 

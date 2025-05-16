@@ -22,6 +22,7 @@ function SearchBar() {
 
   return (
     <input
+      style={{ width: "30rem" }}
       type="text"
       placeholder="جستجو در نام، شناسه، قیمت، موجودی..."
       onChange={handleChange}

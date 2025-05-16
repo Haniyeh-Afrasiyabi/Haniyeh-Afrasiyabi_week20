@@ -1,19 +1,17 @@
 import { createContext, useReducer, useEffect } from "react";
-import styles from "../components/dashboard.module.css";
-import { getAllProducts } from "../services/authService";
+import { getAllProducts } from "../services/config";
 import HeaderDashboard from "./HeaderDashboard";
 import MainDashboard from "./Maindashboard";
 import ModalDeleteSingle from "./ModalDeleteSingle";
 import ModalAddProduct from "./ModalAddProduct";
 import ModalEditProduct from "./ModalEditProduct";
-import { data } from "react-router-dom";
 
 export const ProductsContext = createContext();
 
 const initialState = {
   products: [],
   modalDeleteSingle: { show: false, id: null },
-  modalAddProduct: { show: false },
+  modalAddProduct: { show: false, data: null },
   modalEditProduct: { show: false, data: null },
   searchTerm: "",
   currentPage: 1,
@@ -44,12 +42,12 @@ const reducer = (state, action) => {
     case "ShowAddProductModal":
       return {
         ...state,
-        modalAddProduct: { show: true },
+        modalAddProduct: { show: true, data: null },
       };
     case "CloseAddProductModal":
       return {
         ...state,
-        modalAddProduct: { show: false },
+        modalAddProduct: { show: false, data: null },
       };
     case "AddProduct":
       return { ...state, products: [action.payload, ...state.products] };
@@ -101,7 +99,7 @@ function Dashboard() {
 
   return (
     <ProductsContext.Provider value={{ state, dispatch }}>
-      <div className={styles.container}>
+      <div>
         <HeaderDashboard />
         <MainDashboard />
         <ModalAddProduct />

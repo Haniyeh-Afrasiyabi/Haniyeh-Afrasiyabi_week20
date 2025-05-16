@@ -4,10 +4,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { productSchema } from "../schema/productSchema";
 import getInputProduct from "../constants/inputAddProduct";
-import { editProduct } from "../services/authService";
+import { editProduct } from "../services/config";
 import { toast } from "react-toastify";
-
-import styles from "../components/modalAddProduct.module.css";
+import styles from "../components/modalAdd&EditProduct.module.css";
 
 function ModalEditProduct() {
   const { state, dispatch } = useContext(ProductsContext);

@@ -25,9 +25,7 @@ function MainDashboard() {
       <div>
         <TableProductsList />
         <Pagination />
-        
       </div>
-      
     </main>
   );
 }

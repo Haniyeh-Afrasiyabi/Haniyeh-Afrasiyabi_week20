@@ -3,10 +3,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { userSchema } from "../schema/signUp";
 import getInputs from "../constants/input";
 import icon from "../assets/Union.png";
-import styles from "./signUp.module.css";
-import { signUp } from "../services/authService";
+import styles from "./signUp&Login.module.css";
+import { signUp } from "../services/config";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -30,10 +30,9 @@ function SignUp() {
     console.log(payload);
 
     try {
-      const result = await signUp(payload);
+      await signUp(payload);
 
       toast.success("ثبت‌نام با موفقیت انجام شد!");
-
 
       navigate("/login");
     } catch (error) {
@@ -51,7 +50,6 @@ function SignUp() {
   };
 
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>بوت کمپ بوتواستارت</h1>
       <div className={styles.container}>
@@ -72,7 +70,9 @@ function SignUp() {
         ))}
 
         <button className={styles.button}>ثبت نام</button>
-        <span>حساب کاربری دارید؟</span>
+        <span>
+          <NavLink to="/login">حساب کاربری دارید؟</NavLink>
+        </span>
       </div>
     </form>
   );

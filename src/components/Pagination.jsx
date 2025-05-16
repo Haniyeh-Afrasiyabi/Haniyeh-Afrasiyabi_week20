@@ -23,42 +23,66 @@ function Pagination() {
       style={{
         marginTop: "1rem",
         display: "flex",
-        gap: "6px",
         alignItems: "center",
+        justifyContent: "center",
       }}
     >
-      {/* 🔹 صفحه قبل */}
-      <button
-        disabled={currentPage === 1}
-        onClick={() => goToPage(currentPage - 1)}
-      >
-        ◀ قبلی
-      </button>
-
-      {/* 🔸 دکمه‌های صفحات */}
-      {[...Array(totalPages)].map((_, i) => (
+      <div style={{ display: "flex", gap: "6px" }}>
+        {/* 🔹 صفحه قبل */}
         <button
-          key={i}
-          onClick={() => goToPage(i + 1)}
           style={{
-            padding: "4px 10px",
-            backgroundColor: currentPage === i + 1 ? "#444" : "#eee",
-            color: currentPage === i + 1 ? "#fff" : "#000",
-            borderRadius: "4px",
+            borderRadius: "50%",
             cursor: "pointer",
+            padding: "6px 4px",
+            backgroundColor: currentPage === 1 ? "#FFFFFF" : "#55A3F0",
+            color: currentPage === 1 ? "#8D8D8D80" : "#FFFFFF",
+            border:
+              currentPage === 1 ? "2px solid #8D8D8D80" : "2px solid #55A3F0",
           }}
+          disabled={currentPage === 1}
+          onClick={() => goToPage(currentPage - 1)}
         >
-          {i + 1}
+          ▶ قبلی
         </button>
-      ))}
 
-      {/* 🔹 صفحه بعد */}
-      <button
-        disabled={currentPage === totalPages}
-        onClick={() => goToPage(currentPage + 1)}
-      >
-        بعدی ▶
-      </button>
+        {/* 🔸 دکمه‌های صفحات */}
+        {[...Array(totalPages)].map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goToPage(i + 1)}
+            style={{
+              padding: "4px 10px",
+              backgroundColor: currentPage === i + 1 ? "#55A3F0" : "#FFFFFF",
+              color: currentPage === i + 1 ? "#FFFFFF" : "#8D8D8D80",
+              border:
+                currentPage === i + 1
+                  ? "2px solid #55A3F0"
+                  : "2px solid #8D8D8D80",
+              borderRadius: "50%",
+              cursor: "pointer",
+            }}
+          >
+            {i + 1}
+          </button>
+        ))}
+
+        {/* 🔹 صفحه بعد */}
+        <button
+          style={{
+            borderRadius: "50%",
+            cursor: "pointer",
+            padding: "6px 4px",
+            backgroundColor: currentPage === 1 ? "#55A3F0" : "#FFFFFF",
+            color: currentPage === 1 ? "#FFFFFF" : "#8D8D8D80",
+            border:
+              currentPage === 1 ? "2px solid #55A3F0" : "2px solid #8D8D8D80",
+          }}
+          disabled={currentPage === totalPages}
+          onClick={() => goToPage(currentPage + 1)}
+        >
+          بعدی ◀
+        </button>
+      </div>
     </div>
   );
 }

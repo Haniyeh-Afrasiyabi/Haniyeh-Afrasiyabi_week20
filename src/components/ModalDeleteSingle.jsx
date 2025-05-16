@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ProductsContext } from "./Dashboard";
 import styles from "../components/modalDeleteSingle.module.css";
 import closeIcon from "../assets/close_icon/Close.png";
-import { deleteProduct } from "../services/authService";
+import { deleteProduct } from "../services/config";
 import { toast } from "react-toastify";
 
 function ModalDeleteSingle() {

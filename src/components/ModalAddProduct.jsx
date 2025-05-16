@@ -1,13 +1,12 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ProductsContext } from "./Dashboard";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { productSchema } from "../schema/productSchema";
 import getInputProduct from "../constants/inputAddProduct";
-import { addProduct } from "../services/authService";
+import { addProduct } from "../services/config";
 import { toast } from "react-toastify";
-
-import styles from "../components/modalAddProduct.module.css";
+import styles from "../components/modalAdd&EditProduct.module.css";
 
 function ModalAddProduct() {
   const { state, dispatch } = useContext(ProductsContext);
@@ -15,11 +14,18 @@ function ModalAddProduct() {
   const {
     register,
     handleSubmit,
+    reset,
 
     formState: { errors },
   } = useForm({
     resolver: yupResolver(productSchema),
   });
+
+  useEffect(() => {
+    if (state.modalAddProduct.show) {
+      reset(); // پاک کردن فرم وقتی مودال باز می‌شود
+    }
+  }, [state.modalAddProduct.show, reset]);
 
   const inputsProduct = getInputProduct(register);
 
@@ -39,6 +45,7 @@ function ModalAddProduct() {
       toast.success("محصول با موفقیت ایجاد شد ✅");
     } catch (error) {
       toast.error("خطا در ایجاد محصول ❌");
+      console.log(error);
     }
   };
 
