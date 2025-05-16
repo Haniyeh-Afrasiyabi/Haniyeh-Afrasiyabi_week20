@@ -1,6 +1,6 @@
 import { object, string } from "yup";
 
-export const addProductSchema = object({
+export const productSchema = object({
   nameProduct: string()
     .required("نام کالا الزامی است")
     .min(2, "نام کالا حداقل باید ۲ حرف باشد"),

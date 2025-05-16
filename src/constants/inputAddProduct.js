@@ -1,5 +1,5 @@
-const getInputAddProduct = (register) => {
-  const inputsAddProduct = [
+const getInputProduct = (register) => {
+  const inputsProduct = [
     {
       label: "نام کالا",
       type: "text",
@@ -22,7 +22,7 @@ const getInputAddProduct = (register) => {
       register: register("price"),
     },
   ];
-  return inputsAddProduct;
+  return inputsProduct;
 };
 
-export default getInputAddProduct;
+export default getInputProduct;

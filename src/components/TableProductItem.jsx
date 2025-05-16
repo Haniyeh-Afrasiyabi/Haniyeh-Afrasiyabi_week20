@@ -14,8 +14,13 @@ function TableProductItem({ product }) {
       <td>{product.price}</td>
       <td>{product.id}</td>
       <td>
-        <button className={styles.button}>
-          <img src={edit_icon} alt="" />
+        <button
+          className={styles.button}
+          onClick={() =>
+            dispatch({ type: "ShowEditProductModal", payload: product })
+          }
+        >
+          <img src={edit_icon} alt="ویرایش" />
         </button>
         <button
           className={styles.button}

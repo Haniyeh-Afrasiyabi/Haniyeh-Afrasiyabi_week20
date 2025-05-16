@@ -1,21 +1,21 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ProductsContext } from "./Dashboard";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { productSchema } from "../schema/productSchema";
 import getInputProduct from "../constants/inputAddProduct";
-import { addProduct } from "../services/authService";
+import { editProduct } from "../services/authService";
 import { toast } from "react-toastify";
 
 import styles from "../components/modalAddProduct.module.css";
 
-function ModalAddProduct() {
+function ModalEditProduct() {
   const { state, dispatch } = useContext(ProductsContext);
 
   const {
     register,
     handleSubmit,
-
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(productSchema),
@@ -23,7 +23,16 @@ function ModalAddProduct() {
 
   const inputsProduct = getInputProduct(register);
 
-  if (!state.modalAddProduct?.show) return null;
+  const editingProduct = state.modalEditProduct?.data;
+  useEffect(() => {
+    if (editingProduct) {
+      setValue("nameProduct", editingProduct.name);
+      setValue("quantity", editingProduct.quantity);
+      setValue("price", editingProduct.price);
+    }
+  }, [editingProduct, setValue]);
+
+  if (!state.modalEditProduct?.show) return null;
 
   const onSubmit = async (data) => {
     const payload = {
@@ -33,12 +42,12 @@ function ModalAddProduct() {
     };
 
     try {
-      const result = await addProduct(payload);
-      dispatch({ type: "AddProduct", payload: result });
-      dispatch({ type: "CloseAddProductModal" });
-      toast.success("محصول با موفقیت ایجاد شد ✅");
+      const result = await editProduct(editingProduct.id, payload);
+      dispatch({ type: "editProduct", payload: result });
+      dispatch({ type: "CloseEditProductModal" });
+      toast.success("محصول با موفقیت ویرایش شد");
     } catch (error) {
-      toast.error("خطا در ایجاد محصول ❌");
+      toast.error("ویرایش محصول ناموفق بود");
     }
   };
 
@@ -46,7 +55,7 @@ function ModalAddProduct() {
     <div className={styles.overlay}>
       <div className={styles.modal}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h3 className={styles.title}>ایجاد محصول جدید</h3>
+          <h3 className={styles.title}>ویرایش اطلاعات </h3>
 
           {inputsProduct.map((input, index) => (
             <div className={styles.inputContainer} key={index}>
@@ -64,12 +73,12 @@ function ModalAddProduct() {
 
           <div className={styles.buttons}>
             <button className={styles.addButton} type="submit">
-              ایجاد
+              ثبت اطلاعات جدید
             </button>
             <button
               className={styles.cancelButton}
               type="button"
-              onClick={() => dispatch({ type: "CloseAddProductModal" })}
+              onClick={() => dispatch({ type: "CloseEditProductModal" })}
             >
               انصراف
             </button>
@@ -80,4 +89,4 @@ function ModalAddProduct() {
   );
 }
 
-export default ModalAddProduct;
+export default ModalEditProduct;

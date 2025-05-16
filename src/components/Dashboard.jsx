@@ -5,6 +5,8 @@ import HeaderDashboard from "./HeaderDashboard";
 import MainDashboard from "./Maindashboard";
 import ModalDeleteSingle from "./ModalDeleteSingle";
 import ModalAddProduct from "./ModalAddProduct";
+import ModalEditProduct from "./ModalEditProduct";
+import { data } from "react-router-dom";
 
 export const ProductsContext = createContext();
 
@@ -12,6 +14,7 @@ const initialState = {
   products: [],
   modalDeleteSingle: { show: false, id: null },
   modalAddProduct: { show: false },
+  modalEditProduct: { show: false, data: null },
 };
 
 const reducer = (state, action) => {
@@ -47,6 +50,23 @@ const reducer = (state, action) => {
       };
     case "AddProduct":
       return { ...state, products: [action.payload, ...state.products] };
+    case "ShowEditProductModal":
+      return {
+        ...state,
+        modalEditProduct: { show: true, data: action.payload },
+      };
+    case "editProduct":
+      return {
+        ...state,
+        products: state.products.map((product) =>
+          product.id == action.payload.id ? action.payload : product
+        ),
+      };
+    case "CloseEditProductModal":
+      return {
+        ...state,
+        modalEditProduct: { show: false, data: null },
+      };
   }
 };
 
@@ -69,10 +89,10 @@ function Dashboard() {
   return (
     <ProductsContext.Provider value={{ state, dispatch }}>
       <div className={styles.container}>
-      
         <HeaderDashboard />
         <MainDashboard />
         <ModalAddProduct />
+        <ModalEditProduct />
         <ModalDeleteSingle />
       </div>
     </ProductsContext.Provider>
