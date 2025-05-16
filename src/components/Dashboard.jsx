@@ -15,6 +15,9 @@ const initialState = {
   modalDeleteSingle: { show: false, id: null },
   modalAddProduct: { show: false },
   modalEditProduct: { show: false, data: null },
+  searchTerm: "",
+  currentPage: 1,
+  itemsPerPage: 5,
 };
 
 const reducer = (state, action) => {
@@ -66,6 +69,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         modalEditProduct: { show: false, data: null },
+      };
+    case "SetSearchTerm":
+      return {
+        ...state,
+        searchTerm: action.payload,
+      };
+    case "SetCurrentPage":
+      return {
+        ...state,
+        currentPage: action.payload,
       };
   }
 };

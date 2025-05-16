@@ -1,6 +1,7 @@
 import styles from "../components/headerDashboard.module.css";
 import searchIcon from "../assets/search_icon/search-normal.png";
 import profileAvatar from "../assets/profileAvatar/49a9d4a2187883bfc87aeae832ffd1ccba1e9061.jpg";
+import SearchBar from "./SearchBar";
 
 function HeaderDashboard() {
   const username = localStorage.getItem("username");
@@ -8,7 +9,8 @@ function HeaderDashboard() {
     <header className={styles.header}>
       <div className={styles.searchBox}>
         <img src={searchIcon} alt="" />
-        <input type="text" placeholder="جستجو کالا" />
+        {/* <input type="text" placeholder="جستجو کالا" /> */}
+        <SearchBar />
       </div>
 
       <div className={styles.profileInfo}>

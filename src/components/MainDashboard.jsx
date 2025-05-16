@@ -3,6 +3,7 @@ import { ProductsContext } from "./Dashboard";
 import productManagement_icon from "../assets/productManagement_icon/setting-3.png";
 import TableProductsList from "./TableProductsList";
 import styles from "./mainDashboard.module.css";
+import Pagination from "./Pagination";
 
 function MainDashboard() {
   const { dispatch } = useContext(ProductsContext);
@@ -23,7 +24,10 @@ function MainDashboard() {
       </div>
       <div>
         <TableProductsList />
+        <Pagination />
+        
       </div>
+      
     </main>
   );
 }
