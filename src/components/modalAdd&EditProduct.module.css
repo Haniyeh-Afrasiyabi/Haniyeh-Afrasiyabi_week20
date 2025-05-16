@@ -40,6 +40,7 @@
   font-size: 14px;
   font-weight: 500;
   color: #282828;
+  overflow-y: hidden;
 }
 
 .input {
