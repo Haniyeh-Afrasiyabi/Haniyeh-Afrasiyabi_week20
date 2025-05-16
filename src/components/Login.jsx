@@ -51,31 +51,33 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>بوت کمپ بوتواستارت</h1>
-      <div className={styles.container}>
-        <div className={styles.icon}>
-          <img src={icon} alt="" />
-        </div>
-        <h3> فرم ورود</h3>
-        {inputs.map((input, index) => (
-          <div key={index} className={styles.container_input}>
-            <input
-              type={input.type}
-              className={styles.input}
-              placeholder={input.placeholder}
-              {...input.register}
-            />
-            {errors[input.name] && <span>{errors[input.name]?.message}</span>}
+    <div className={styles.formContainer}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h1>بوت کمپ بوتواستارت</h1>
+        <div className={styles.container}>
+          <div className={styles.icon}>
+            <img src={icon} alt="" />
           </div>
-        ))}
+          <h3> فرم ورود</h3>
+          {inputs.map((input, index) => (
+            <div key={index} className={styles.container_input}>
+              <input
+                type={input.type}
+                className={styles.input}
+                placeholder={input.placeholder}
+                {...input.register}
+              />
+              {errors[input.name] && <span>{errors[input.name]?.message}</span>}
+            </div>
+          ))}
 
-        <button className={styles.button}> ورود</button>
-        <span>
-          <NavLink to="/">ایجاد حساب کاربری! </NavLink>
-        </span>
-      </div>
-    </form>
+          <button className={styles.button}> ورود</button>
+          <span>
+            <NavLink to="/">ایجاد حساب کاربری! </NavLink>
+          </span>
+        </div>
+      </form>
+    </div>
   );
 }
 export default Login;

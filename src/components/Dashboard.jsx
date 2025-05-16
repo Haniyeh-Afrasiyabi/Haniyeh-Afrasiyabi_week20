@@ -5,6 +5,7 @@ import MainDashboard from "./Maindashboard";
 import ModalDeleteSingle from "./ModalDeleteSingle";
 import ModalAddProduct from "./ModalAddProduct";
 import ModalEditProduct from "./ModalEditProduct";
+import styles from "./dashboard.module.css";
 
 export const ProductsContext = createContext();
 
@@ -99,9 +100,11 @@ function Dashboard() {
 
   return (
     <ProductsContext.Provider value={{ state, dispatch }}>
-      <div>
+      <div className={styles.container}>
         <HeaderDashboard />
-        <MainDashboard />
+        <div className={styles.scrollableContent}>
+          <MainDashboard />
+        </div>
         <ModalAddProduct />
         <ModalEditProduct />
         <ModalDeleteSingle />

@@ -1,0 +1,28 @@
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2196f3;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.container {
+  height: 100vh; /* ارتفاع کامل صفحه */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* اسکرول کلی صفحه رو حذف کن */
+  padding: 0.5rem 1rem;
+}
+
+.scrollableContent {
+  flex: 1;
+  overflow-y: auto; /* فقط این بخش اسکرول بخوره */
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+}
